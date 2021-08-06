@@ -30,9 +30,4 @@ namespace FPandScala
             return Add1(previous + 1);
         }
     }
-
-    [Test]
-    public class AvoidPassingByReference
-    {
-    }
 }

@@ -31,5 +31,24 @@ namespace FPandScala
             Foo(out myInt); // C++ equivalent is &myInt
             Console.WriteLine(myInt);
         }
+
+        // Would prefer not to pass by reference, and would also encourage not 'mutating' objects passed into functions
+        // Instead, use composite return types which include both 'happy' and 'failure' payloads
+        // In the absence of the Either monad, you can standardise with something resembling Either:
+        public class Result<TFailure, TSuccess>
+        {
+            public Result(TSuccess data)
+            {
+                Data = data;
+                Succeeded = true;
+            }
+            public Result(TFailure error)
+            {
+                Error = error;
+            }
+            public TSuccess Data { get; }
+            public TFailure Error { get; }
+            public bool Succeeded { get; }
+        }
     }
 }
