@@ -42,7 +42,7 @@ namespace FPandScala
             return result;
         }
 
-        // C#9 pretty much has it right ...
+        // C#9
         public string PatternMatchCs9(ITool tool)
         {
             var result = tool switch
@@ -53,7 +53,10 @@ namespace FPandScala
             };
             return result;
         }
+
+
     }
+
 
     public interface ITool
     {

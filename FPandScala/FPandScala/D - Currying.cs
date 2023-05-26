@@ -22,7 +22,7 @@ namespace FPandScala
             var finalSum = partialResult(3);
             Console.WriteLine(finalSum);
 
-            // Javascript guys love this style 'Immediately Invoked Function Expression (IIFE)', but this is more about scoping than maths "Module Pattern"
+            // Javascript guys love 'Immediately Invoked Function Expression (IIFE)', but this is more about scoping than maths "Module Pattern"
             // (function () {})()
         }
     }

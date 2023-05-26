@@ -3,6 +3,8 @@ using NUnit.Framework;
 
 namespace FPandScala
 {
+    // Classes are reference types, and by default, have the default 'reference equality' comparison.
+    // Unless two variables point to the same object instance allocated on the heap, then they are not regarded as equal
     public class MyPointClass
     {
         public MyPointClass(decimal x, decimal y, decimal z)
@@ -15,9 +17,6 @@ namespace FPandScala
         public decimal Y { get; set; }
         public decimal Z { get; set; }
     }
-
-    
-    public record MyPointRecord(decimal X, decimal Y, decimal Z);
 
     [TestFixture]
     public class PointTests
@@ -50,6 +49,9 @@ namespace FPandScala
         }
     }
 
+    /// <summary>
+    /// To make reference types 'equal', we need to add a lot of additional boilerplate code ...
+    /// </summary>
     public class MyPointClassWithValueEquality : IEquatable<MyPointClassWithValueEquality>
     {
         public MyPointClassWithValueEquality(decimal x, decimal y, decimal z)
@@ -86,4 +88,9 @@ namespace FPandScala
             return HashCode.Combine(X, Y, Z);
         }
     }
+
+    // But now, with C# records, we can get ALL of the benefit of IEquatable, Equals, HashCode, 3 Immutable Properties AND a Deconstruct in one line!
+    public record MyPointRecord(decimal X, decimal Y, decimal Z);
+
+    // NB - RECORDS ARE NOT STRUCTS - records are still heap allocated. Structs are value types, and should be avoided unless you know what you're doing.
 }
