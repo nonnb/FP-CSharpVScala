@@ -7,6 +7,7 @@ namespace FPandScala
     {
         public Result ImperativeBranches(string value)
         {
+            // Most of our orchestration / handler code looks like such
             var result = Validate(value);
             if (result != Result.Ok)
             {
@@ -27,10 +28,12 @@ namespace FPandScala
             return Result.Ok;
         }
 
-        // With null conditionals, null coalescing and conditional ternary operators or pattern matching, we can do basic railway flows (or at least avoid NRE's)
-        // , e.g. using null to indicate error
+        // You've probably familiar with the basic RO programming 'flow' with null conditional (elvis)
+        // and conditional ternary operators or pattern matching (e.g. to avoid NRE's)
+        // null is used to indicate error (yuk)
         public Result HalfRailway(string value)
         {
+            // Note real FP won't use nullable types, it will use a Monad like Either or Maybe.
             return value
                     ?.Translate() // <- If value is NULL, then ALL steps until the switch are skipped
                     ?.Reverse() // ditto
